@@ -673,6 +673,7 @@ public class EbookExample {
             addCriterion("vote_count not between", value1, value2, "voteCount");
             return (Criteria) this;
         }
+
     }
 
     public static class Criteria extends GeneratedCriteria {
