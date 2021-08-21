@@ -4,6 +4,7 @@ import com.wanggang.platform.domain.Ebook;
 import com.wanggang.platform.domain.EbookExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Service;
 
 public interface EbookMapper {
     long countByExample(EbookExample example);
