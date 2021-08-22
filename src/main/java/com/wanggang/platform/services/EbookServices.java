@@ -5,6 +5,7 @@ import com.wanggang.platform.domain.EbookExample;
 import com.wanggang.platform.mapper.EbookMapper;
 import com.wanggang.platform.req.EbookReq;
 import com.wanggang.platform.resp.EbookResp;
+import com.wanggang.platform.util.CopyUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -24,13 +25,7 @@ public class EbookServices {
         EbookExample.Criteria criteria = ebookExample.createCriteria();
         criteria.andNameLike("%" + req.getName() + "%");
         List<Ebook> ebooks = ebookMapper.selectByExample(ebookExample);
-        List<EbookResp> respList = new ArrayList<>();
-        for (Ebook ebook : ebooks) {
-            EbookResp ebookResp = new EbookResp();
-            BeanUtils.copyProperties(ebook,ebookResp);
-            respList.add(ebookResp);
-        }
-        return respList;
+        return CopyUtil.copyList(ebooks, EbookResp.class);
     }
     // service 调用 mapper查询数据
     // service 供controller调用
