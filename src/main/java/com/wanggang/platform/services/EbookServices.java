@@ -9,8 +9,10 @@ import com.wanggang.platform.req.EbookReq;
 import com.wanggang.platform.req.EbookSaveReq;
 import com.wanggang.platform.resp.EbookResp;
 import com.wanggang.platform.util.CopyUtil;
+import com.wanggang.platform.util.SnowFlake;
 import io.netty.util.internal.ObjectUtil;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
@@ -23,6 +25,10 @@ public class EbookServices {
 
     @Resource
     private EbookMapper ebookMapper;
+
+    @Autowired
+    private SnowFlake snowFlake;
+
 
     public List<EbookResp> list(EbookReq req) {
         EbookExample ebookExample = new EbookExample();
@@ -42,6 +48,7 @@ public class EbookServices {
         // 新增或者更新
         if (ObjectUtils.isEmpty(req.getId())) {
             // 新增
+            ebook.setId(snowFlake.nextId());
             ebookMapper.insert(ebook);
         } else {
             // 更新
