@@ -1,9 +1,14 @@
 package com.wanggang.platform.req;
 
 
+import org.springframework.stereotype.Component;
+
+import javax.validation.constraints.NotNull;
+
 public class EbookReq extends PageReq {
     private Long id;
 
+    @NotNull(message = "name can not be empty")
     private String name;
 
     public Long getId() {

@@ -44,10 +44,9 @@ public class CommonResp<T> {
 
     @Override
     public String toString() {
-        final String s = "ResponseDto{" + "success=" + success +
+        return "ResponseDto{" + "success=" + success +
                 ", message='" + message + '\'' +
                 ", content=" + content +
                 '}';
-        return s;
     }
 }
